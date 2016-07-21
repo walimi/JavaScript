@@ -1,4 +1,7 @@
-var scoreboard = function () {
+var Scoreboard = function () {
+ 
+    console.log("Creating a new scoreboard...");
+ 
     // private members
     var results = [] // array to store result of every game
 
@@ -28,4 +31,4 @@ var scoreboard = function () {
         updateScoreboard: updateScoreboard
     };
 
-}();
+};
