@@ -9,7 +9,7 @@
     });
     
     // add click handler to the calculate score button
-    document.getElementById("calculte").addEventListener("click", function() {
+    document.getElementById("calculate").addEventListener("click", function() {
         game.calculateScore();
     });
     
