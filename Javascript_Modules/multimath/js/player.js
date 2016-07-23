@@ -1,26 +1,22 @@
-// Using AMD format with RequireJS Format Loader
+// Using the CommonJS format with SystemJS
 
-// Player module does not depend on any other module
-define([], function () {
+// Player module does not have any dependencies.
 
-    // private members
-    var playerName = "";
+// private members
+var playerName = "";
 
-    function logPlayer() {
-        console.log("The current player is: " + playerName + ".");
-    }
+function logPlayer() {
+    console.log("The current player is: " + playerName + ".");
+}
 
-    function setName(newName) {
-        playerName = newName;
-    }
+function setName(newName) {
+    playerName = newName;
+}
 
-    function getName() {
-        return playerName;
-    }
+function getName() {
+    return playerName;
+}
 
-    return {
-        logPlayer: logPlayer,
-        setName: setName,
-        getName: getName
-    };
-});
+exports.logPlayer = logPlayer;
+exports.setName = setName;
+exports.getName = getName;

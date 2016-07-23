@@ -1,36 +1,34 @@
-// Using the AMD format with RequireJS loader. 
+// Using the CommonJS format with SystemJS
 
 // Scoreboard module does not depend on any other module
-define([], function() {
-   
-    console.log("Creating a new scoreboard...");
- 
-    // private members
-    var results = [] // array to store result of every game
 
-    function addResult(newResult) {
-        results.push(newResult)
-    };
+console.log("Creating a new scoreboard...");
 
-    function updateScoreboard() {
-        var output = "<h2>Scoreboard</h2>";
+// private members
+var results = [] // array to store result of every game
 
-        // loop over all the results and create the HTML for the scoreboard
-        for (var index = 0; index < results.length; index++) {
-            var result = results[index];
-            output += "<h4>";
-            output += result.name + " :" + result.score + "/" + result.problems + " for factor " + result.factor;
-            output += "</h4>";
-        }
+function addResult(newResult) {
+    results.push(newResult)
+};
 
-        // add the updated scoreboard to the page
-        var scoresElement = document.getElementById("scores");
-        scoresElement.innerHTML = output;
-    };
+function updateScoreboard() {
+    var output = "<h2>Scoreboard</h2>";
 
-    // return public members
-    return {
-        addResult: addResult,
-        updateScoreboard: updateScoreboard
-    };
-});
+    // loop over all the results and create the HTML for the scoreboard
+    for (var index = 0; index < results.length; index++) {
+        var result = results[index];
+        output += "<h4>";
+        output += result.name + " :" + result.score + "/" + result.problems + " for factor " + result.factor;
+        output += "</h4>";
+    }
+
+    // add the updated scoreboard to the page
+    var scoresElement = document.getElementById("scores");
+    scoresElement.innerHTML = output;
+};
+
+// return public members
+module.exports = {
+    addResult: addResult,
+    updateScoreboard: updateScoreboard
+};
