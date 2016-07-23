@@ -1,5 +1,8 @@
-var Scoreboard = function () {
- 
+// Using the AMD format with RequireJS loader. 
+
+// Scoreboard module does not depend on any other module
+define([], function() {
+   
     console.log("Creating a new scoreboard...");
  
     // private members
@@ -30,5 +33,4 @@ var Scoreboard = function () {
         addResult: addResult,
         updateScoreboard: updateScoreboard
     };
-
-};
+});
