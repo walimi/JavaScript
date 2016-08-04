@@ -1,4 +1,4 @@
-// Using the CommonJS format with SystemJS
+//  Using ES 2015 Module Syntax
 
 // Scoreboard module does not depend on any other module
 
@@ -28,7 +28,4 @@ function updateScoreboard() {
 };
 
 // return public members
-module.exports = {
-    addResult: addResult,
-    updateScoreboard: updateScoreboard
-};
+export { addResult, updateScoreboard }
