@@ -1,3 +1,5 @@
+# browserify works only with CommonJS therefore i had to create a new branch from an older commit. 
+
 # to install browserify, run the following in command line
 npm install browserify --save-dev
 
