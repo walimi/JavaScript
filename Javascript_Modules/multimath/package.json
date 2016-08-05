@@ -10,6 +10,7 @@
   "author": "Wahid Alimi",
   "license": "ISC",
   "devDependencies": {
+    "browserify": "^13.1.0",
     "http-server": "^0.9.0"
   },
   "dependencies": {
