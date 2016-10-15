@@ -54,3 +54,27 @@ function loadImage(url) {
 var url = "https://tctechcrunch2011.files.wordpress.com/2015/08/tesla_model_s.jpg";
 displayImage1.show(url);
 displayImage2.show(url);
+
+
+// Chaining Promises
+
+
+Promise.resolve("ta-da!").then(
+  function step2(result) {
+    console.log("Step 2 received " + result);
+    return "Greetings from Step 2";                 // Explicit return value. 
+  }
+).then(
+  function step3(result) {
+    console.log("Step 3 received " + result);      // No explicit return value.
+  }
+).then(
+  function step4(result) {
+    console.log("Step 4 received " + result);
+    return Promise.resolve("fullfilled value");
+  }
+).then(
+  function step5(result) {
+    console.log("Step 5 received " + result); 
+  }
+);
