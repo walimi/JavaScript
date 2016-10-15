@@ -84,6 +84,7 @@ Promise.resolve("ta-da!").then(
 
 */
 
+/*
 // Callback Execution Order
 // (The numbered comments show the relative execution order.)
 var promise = new Promise(function(resolve, reject) {
@@ -96,3 +97,45 @@ promise.then(function() {
 });
 
 console.log("This is the last line of the script");       // 2
+
+*/
+
+
+// Basic Error Propogation
+
+// - Using rejection handler at the end of a chain
+Promise.reject(Error("bad news")).then(
+  function step2() {
+    console.log("This is never run");
+  }
+).then(
+  function step3() {
+    console.log("This is also never run");
+  }
+).catch(
+  function (error) {
+    console.log("Something failed along the way. Inspect error for more info.");
+    console.log(error); // Error object with message: "bad news"
+  }
+);
+
+// - Rejecting a promise by throwing an error in the constructor Callback
+rejectWith("bad news").then(
+  function step2() {
+    console.log("This is never run"); 
+  }
+).catch(
+  function (error) {
+    console.log("Foiled again."); 
+    console.log(error); // Error object with message: "bad news
+
+  }
+);
+
+
+function rejectWith(val) {
+  return new Promise(function (resolve, reject) {
+    throw Error(val);
+    resolve("Not used"); // This line is never run.
+  });
+}
