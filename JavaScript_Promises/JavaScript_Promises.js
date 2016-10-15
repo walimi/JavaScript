@@ -1,5 +1,5 @@
 // Using Promises
-
+/*
 var displayImage1 = {
   show: function(url) {
     car.getCarImage(url).then(function(img) {
@@ -55,7 +55,10 @@ var url = "https://tctechcrunch2011.files.wordpress.com/2015/08/tesla_model_s.jp
 displayImage1.show(url);
 displayImage2.show(url);
 
+*/
 
+
+/*
 // Chaining Promises
 
 
@@ -71,10 +74,25 @@ Promise.resolve("ta-da!").then(
 ).then(
   function step4(result) {
     console.log("Step 4 received " + result);
-    return Promise.resolve("fullfilled value");
+    return Promise.resolve("fulfilled value");    // Returns a Promise
   }
 ).then(
   function step5(result) {
     console.log("Step 5 received " + result); 
   }
 );
+
+*/
+
+// Callback Execution Order
+// (The numbered comments show the relative execution order.)
+var promise = new Promise(function(resolve, reject) {
+  console.log("Inside the resolver function");            // 1
+  resolve();
+});
+
+promise.then(function() {
+  console.log("Inside the onFulfilled handler");          // 3
+});
+
+console.log("This is the last line of the script");       // 2
