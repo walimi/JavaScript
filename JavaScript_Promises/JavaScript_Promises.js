@@ -101,6 +101,7 @@ console.log("This is the last line of the script");       // 2
 */
 
 
+/*
 // Basic Error Propogation
 
 // - Using rejection handler at the end of a chain
@@ -139,3 +140,93 @@ function rejectWith(val) {
     resolve("Not used"); // This line is never run.
   });
 }
+*/
+
+
+// Sequential Execution using Loops or Recursion
+
+// - Running tasks in parallel using a Loops
+
+var products = ["sku-1", "sku-2", "sku-3"];
+
+products.forEach(function(sku) {
+  getInfo(sku).then(function (info) {
+    console.log(info);
+  })
+});
+
+function getInfo(sku) {
+  console.log("Requested info for: " + sku);
+  return ajax(/* some URL for sku/*/);
+}
+
+// Console output:
+// Requested info for SKU-1
+// Requested info for SKU-2
+// Requested info for SKU-3
+// Info for SKU-1
+// Info for SKU-2
+// Info for SKU-3
+
+
+// - Simple array.reduce to sum numbers
+var numbers = [2, 4, 6];
+var sum = numbers.reduce(function(sum, number) {
+  return sum + number;
+}, 0);
+
+console.log(sum);
+// Console outuput:
+// 12
+
+// - Build a sequential chain using a loop
+// (Build a sequential chain of promises from the elements in an array)
+
+function sequence(array, callback) {
+  return array.reduce(function chain(promise, item) {
+    return promise.then(function() {
+      return callback(item);
+    });
+  }, Promise.resolve());
+};
+
+var products = ["sku-1", "sku-2", "sku-3"];
+
+sequence(products, function(sku) {
+  return getInfo(sku).then(function(info){
+    console.log(info);
+  });
+}).catch(function(reason){
+    console.log(reason);
+});
+
+function getInfo(sku) {
+  console.log("Requested info for " + sku);
+  return ajax(/* some url for AJAX */);
+}
+
+
+// Console output:
+// Requested info for SKU-1
+// Info for SKU-1
+// Requested info for SKU-2
+// Info for SKU-2
+// Requested info for SKU-3
+// Info for SKU-3
+
+
+// - Build sequential chain using Recursion
+// (Replaces sequence function in previous example with a recursive implementation)
+
+function sequence(array, callback) {
+  function chain(array, index) {
+    if(index === array.length) return Promise.resolve();
+    return Promise.resolve(callback(array[index])).then(function() {
+      return chain(array, index++);
+    });
+  }
+
+  return chain(array, 0);
+}
+
+
