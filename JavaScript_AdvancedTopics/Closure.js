@@ -60,3 +60,26 @@ function foo() {
 }
 
 foo();
+
+/**
+ * Example: Loops
+ * 
+ * This code prints out i: 6 five different times. 
+ * 
+ */
+for (var i=1; i<=5; i++) {
+    setTimeout(function(){
+        console.log("i: " + i);
+    }, i*1000)
+}
+
+/**
+ * Solutionn to the above problem is to use an IIFE
+ */
+for (var i=1; i<=5; i++) {
+    (function(i){
+        setTimeout(function(){
+            console.log("i: " + i);
+        }, i*1000)
+    })(i)
+}
